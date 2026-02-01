@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💖</title>
+
+<style>
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffe6f0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+.buttons {
+    position: relative;
+    width: 300px;
+    height: 180px;
+    margin: auto;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+}
+
+#yes {
+    background: green;
+    color: white;
+}
+
+#no {
+    background: red;
+    color: white;
+    position: absolute;
+    left: 150px;
+    top: 90px;
+}
+
+/* Shake animation */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.shake {
+    animation: shake 0.25s;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Hi Qt💖 will you be my valentine?</h1>
+
+    <div class="buttons">
+        <button id="yes" onclick="alert('Yay 💕')">YES</button>
+        <button id="no">NO</button>
+    </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const box = document.querySelector(".buttons");
+
+// PHONE → remove NO
+if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    noBtn.style.display = "none";
+} 
+// DESKTOP → shake then run
+else {
+    noBtn.onmouseenter = () => {
+        noBtn.classList.add("shake");
+
+        setTimeout(() => {
+            noBtn.classList.remove("shake");
+
+            const x = Math.random() * (box.offsetWidth - noBtn.offsetWidth);
+            const y = Math.random() * (box.offsetHeight - noBtn.offsetHeight);
+
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+        }, 250);
+    };
+}
+</script>
+
+</body>
+</html>
+
